@@ -1,0 +1,16 @@
+body {
+    margin: auto;
+    padding-left: 30px;
+    background: lightblue;
+    font-family: sans-serif;
+  }
+  input, select {
+    padding: 10px;
+    width: 150px;
+    display: block;
+    margin: 5px;
+  }
+    .error{
+      color: red;
+    }
+ 
