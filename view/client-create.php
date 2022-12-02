@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Client</title>
-    <link rel="stylesheet" href="{{ path }}css\style.css">
-</head>
-<body>
+{{ include('header.php', {title: 'Client create'}) }}
+
     <main>
         
         <h2>Saisir</h2>
+        <!-- On pourrait mettre ça dans le header directement, avec include, comme tout le code qu'on repete -->
         <span class="error">{{ errors|raw }}</span>
         
         <form action="{{ path }}client/store" method="post">

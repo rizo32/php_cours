@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client</title>
-    <link rel="stylesheet" href="{{ path }}css/style.css">
+{{ include('header.php', {title: 'Liste de clients', pageHeader: 'Index'}) }}
 
-</head>
-<body>
-    <header>
-        Liste de Client
-    </header>
     <main>
         <section>
-            <h2>{{ client_list }}</h2>
-            <a href="{{ path }}client/create">Ajouter</a>
+            {% if session.privilege_id == 1 %}
+                <a href="{{ path }}client/create">Ajouter</a>
+            {% endif %}
             <table>
                 <thead>
                     <tr>

@@ -10,15 +10,28 @@ class ControllerUser{
     }
 
     public function create(){
-        $privilege = new ModelPrivilege;
-        $selectPrivilege = $privilege->select();
-        twig::render('user-create.php', ['privileges' => $selectPrivilege]);
+        CheckSession::sessionAuth();
+        // print_r($_SESSION);
+        // faut être spécifique et garder à l'esprit qu'on pourrait changer la table privilège.
+        if($_SESSION == 1 || $_SESSION['privilege_id'] == 2){
+            $privilege = new ModelPrivilege;
+            $selectPrivilege = $privilege->select();
+            twig::render('user-create.php', ['privileges' => $selectPrivilege]);
+        } else {
+            requirePage::redirectPage('home/error');
+        }
     }
     public function store(){
+        if($_SESSION['privilege_id']==2){
+            $_POST['privilege_id']==3;
+        }
+
+
+
         $validation = new Validation;
         extract($_POST);
-        $validation->name('nom')->value($nom)->pattern('alpha')->required()->max(45);
         // ne regarde pas si le nom est le même, seulement si ça fit le format
+        $validation->name('nom')->value($nom)->pattern('alpha')->required()->max(45);
         $validation->name('username')->value($username)->pattern('email')->required()->max(50);
         $validation->name('password')->value($password)->max(20)->min(6);
         $validation->name('privilege_id')->value($privilege_id)->pattern('int')->required();
@@ -46,6 +59,7 @@ class ControllerUser{
     public function auth(){
         $validation = new Validation;
         extract($_POST);
+        /* veut pas dire que c'est les bonnes données */
         $validation->name('username')->value($username)->pattern('email')->required()->max(50);
         $validation->name('password')->value($password)->required();
 

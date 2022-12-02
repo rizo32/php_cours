@@ -8,6 +8,7 @@ class ControllerClient{
     public function index(){
         //print_r($_SESSION);
         //die();
+        // on check dès le début la session pour bloquer les utilisateurs non connectés
         CheckSession::sessionAuth();
         $client = new ModelClient;
         $select = $client->select();
