@@ -14,10 +14,12 @@ class ModelUser extends Crud {
         $stmt->execute(array($username));
         $count = $stmt->rowCount();
         if($count == 1){
+            // juste fetch parce que de toute façon on a juste un user
             $user_info = $stmt->fetch();
             if(password_verify($password, $user_info['password'])){
                     
                 session_regenerate_id();
+                // c'est ici qu'on pourrait faire un "salut"
                 $_SESSION['user_id'] = $user_info['id'];
                 $_SESSION['privilege_id'] = $user_info['privilege_id'];
                 $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);

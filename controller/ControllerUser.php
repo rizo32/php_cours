@@ -18,6 +18,7 @@ class ControllerUser{
         $validation = new Validation;
         extract($_POST);
         $validation->name('nom')->value($nom)->pattern('alpha')->required()->max(45);
+        // ne regarde pas si le nom est le même, seulement si ça fit le format
         $validation->name('username')->value($username)->pattern('email')->required()->max(50);
         $validation->name('password')->value($password)->max(20)->min(6);
         $validation->name('privilege_id')->value($privilege_id)->pattern('int')->required();
@@ -49,7 +50,7 @@ class ControllerUser{
         $validation->name('password')->value($password)->required();
 
         if($validation->isSuccess()){
-
+            // on est pas obligé d'écrire la logique dynamiquement, mais si on réétulise c'est mieux
             $user = new ModelUser;
             $checkUser = $user->checkUser($_POST);
             
