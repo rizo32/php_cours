@@ -5,7 +5,7 @@ class RequirePage{
         return require_once "model/$model.php";
     }
     static public function redirectPage($page){
-        return header("Location: http://maisonneuve:7080/PHP/cours19/".$page);
+        return header("Location: http://localhost/PHP/cours19/".$page);
     }
 }
 

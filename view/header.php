@@ -12,10 +12,10 @@
         <a href = "{{ path }}client">Client</a>
         <a href = "{{ path }}user">User</a>
         {% if guest %}
-        <a href = "{{ path }}user">Login</a>
+        <a href = "{{ path }}user/login">Login</a>
         {% else %}
-        <a href = "{{ path }}user">Logout</a>
-        {% end if %}
+        <a href = "{{ path }}user/logout">Logout</a>
+        {% endif %}
     </nav>
     <header>
        <h1>{{ pageHeader }}</h1>
